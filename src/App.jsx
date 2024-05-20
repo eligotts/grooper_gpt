@@ -1,45 +1,56 @@
-import { useState } from 'react';
-import logo from './logo.svg';
-import './App.css';
+// Dashboard.js
+import React, { useState } from 'react';
+import TeamList from './TeamList';
+import SubTeamList from './SubTeamList';
+import CreateSubTeamForm from './CreateSubTeamForm';
 
 const App = () => {
-  const [count, setCount] = useState(0);
+  const [teamMembers, setTeamMembers] = useState([
+    { name: 'John Doe' },
+    { name: 'Jane Smith' },
+    { name: 'Bob Johnson' },
+    { name: 'Sarah Williams' },
+    { name: 'Michael Brown' },
+    { name: 'Emily Davis' },
+    { name: 'David Wilson' },
+    { name: 'Olivia Taylor' },
+    { name: 'James Anderson' },
+    { name: 'Sophia Martinez' },
+    { name: 'Daniel Thomas' },
+    { name: 'Ava Garcia' },
+    { name: 'Matthew Robinson' },
+    { name: 'Isabella Clark' },
+    { name: 'Joseph Rodriguez' },
+    { name: 'Mia Lewis' },
+    { name: 'Andrew Lee' },
+    { name: 'Emma Hall' },
+    { name: 'William Young' },
+    { name: 'Abigail Allen' }
+  ]);
+  const [subTeams, setSubTeams] = useState([]);
+
+  const handleCreateSubTeam = (subTeamName) => {
+    // Calculate number of members per sub team
+    const membersPerSubTeam = Math.ceil(teamMembers.length / (subTeams.length + 1));
+    
+    // Distribute members among sub teams
+    const newSubTeams = [];
+    for (let i = 0; i < subTeams.length + 1; i++) {
+      const subTeamMembers = teamMembers.slice(i * membersPerSubTeam, (i + 1) * membersPerSubTeam);
+      newSubTeams.push({ name: subTeamName, members: subTeamMembers.map(member => member.name) });
+    }
+    setSubTeams(newSubTeams);
+  };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button onClick={() => setCount(count => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.jsx</code> and save to test hot module replacement (HMR).
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
+    <div>
+      <h1>Team Dashboard</h1>
+      <TeamList teamMembers={teamMembers} />
+      <SubTeamList subTeams={subTeams} />
+      <CreateSubTeamForm onCreateSubTeam={handleCreateSubTeam} />
     </div>
   );
 };
 
 export default App;
+
