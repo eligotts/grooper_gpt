@@ -1,3 +1,7 @@
+# What this code does
+
+This code allows for the creation of subteams, as well as creation and deletion of team members. When a new subteam is created, the group members are evenly distributed into the subteams. 
+
 # Does the code work?
 
 Yes, the code works decently. It allows for the creation of sub teams and creation/deletion of team members. It distributes team members evenly, but not according to who has worked with who the least.
