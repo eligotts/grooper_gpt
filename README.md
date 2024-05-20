@@ -1,6 +1,19 @@
 # Does the code work?
 
-Yes, the code works decently. It allows for the creation of 
+Yes, the code works decently. It allows for the creation of sub teams and creation/deletion of team members. It distributes team members evenly, but not according to who has worked with who the least.
+
+# How is the code better than what the team currently has?
+
+I think the UI is much simpler but I like the simplicity of adding subteams
+
+# How is the code worse?
+The code is worse because it does not create the teams according to who has worked together least
+
+# How many tries did it take to get the code? Main struggles?
+It took around 10 tries to get all of it working. Main struggles were around creating and deleting members
+
+# Overall impression of the experience
+Super easy to build basic things.
 
 
 
