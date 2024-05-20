@@ -3,31 +3,42 @@ import React, { useState } from 'react';
 import TeamList from './TeamList';
 import SubTeamList from './SubTeamList';
 import CreateSubTeamForm from './CreateSubTeamForm';
+import CreateTeamMemberForm from './CreateTeamMemberForm';
 
 const App = () => {
   const [teamMembers, setTeamMembers] = useState([
-    { name: 'John Doe' },
-    { name: 'Jane Smith' },
-    { name: 'Bob Johnson' },
-    { name: 'Sarah Williams' },
-    { name: 'Michael Brown' },
-    { name: 'Emily Davis' },
-    { name: 'David Wilson' },
-    { name: 'Olivia Taylor' },
-    { name: 'James Anderson' },
-    { name: 'Sophia Martinez' },
-    { name: 'Daniel Thomas' },
-    { name: 'Ava Garcia' },
-    { name: 'Matthew Robinson' },
-    { name: 'Isabella Clark' },
-    { name: 'Joseph Rodriguez' },
-    { name: 'Mia Lewis' },
-    { name: 'Andrew Lee' },
-    { name: 'Emma Hall' },
-    { name: 'William Young' },
-    { name: 'Abigail Allen' }
+    { id: 1, name: 'John Doe' },
+    { id: 2, name: 'Jane Smith' },
+    { id: 3, name: 'Bob Johnson' },
+    { id: 4, name: 'Sarah Williams' },
+    { id: 5, name: 'Michael Brown' },
+    { id: 6, name: 'Emily Davis' },
+    { id: 7, name: 'David Wilson' },
+    { id: 8, name: 'Olivia Taylor' },
+    { id: 9, name: 'James Anderson' },
+    { id: 10, name: 'Sophia Martinez' },
+    { id: 11, name: 'Daniel Thomas' },
+    { id: 12, name: 'Ava Garcia' },
+    { id: 13, name: 'Matthew Robinson' },
+    { id: 14, name: 'Isabella Clark' },
+    { id: 15, name: 'Joseph Rodriguez' },
+    { id: 16, name: 'Mia Lewis' },
+    { id: 17, name: 'Andrew Lee' },
+    { id: 18, name: 'Emma Hall' },
+    { id: 19, name: 'William Young' },
+    { id: 20, name: 'Abigail Allen' }
   ]);
   const [subTeams, setSubTeams] = useState([]);
+
+  const handleCreateTeamMember = (name) => {
+    const newMember = { id: Date.now(), name }; // Generate a unique id for the new member
+    setTeamMembers([...teamMembers, newMember]);
+  };
+
+  const handleDeleteTeamMember = (id) => {
+    setTeamMembers(teamMembers.filter(member => member.id !== id));
+  };
+
 
   const handleCreateSubTeam = (subTeamName) => {
     // Calculate number of members per sub team
@@ -45,9 +56,10 @@ const App = () => {
   return (
     <div>
       <h1>Team Dashboard</h1>
-      <TeamList teamMembers={teamMembers} />
+      <TeamList teamMembers={teamMembers} onDeleteTeamMember={handleDeleteTeamMember} />
       <SubTeamList subTeams={subTeams} />
       <CreateSubTeamForm onCreateSubTeam={handleCreateSubTeam} />
+      <CreateTeamMemberForm onCreateTeamMember={handleCreateTeamMember} /> {/* Render the form for creating team members */}
     </div>
   );
 };

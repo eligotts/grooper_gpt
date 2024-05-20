@@ -1,13 +1,16 @@
 // TeamList.js
 import React from 'react';
 
-const TeamList = ({ teamMembers }) => {
+const TeamList = ({ teamMembers, onDeleteTeamMember }) => {
   return (
     <div>
       <h2>Team Members</h2>
       <ul>
-        {teamMembers.map((member, index) => (
-          <li key={index}>{member.name}</li>
+        {teamMembers.map(member => (
+          <li key={member.id}>
+            {member.name}
+            <button onClick={() => onDeleteTeamMember(member.id)}>Delete</button>
+          </li>
         ))}
       </ul>
     </div>
@@ -15,3 +18,4 @@ const TeamList = ({ teamMembers }) => {
 };
 
 export default TeamList;
+
